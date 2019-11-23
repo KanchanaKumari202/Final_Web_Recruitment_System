@@ -35,6 +35,7 @@ router.post('/form1', (req, res) => {
                 state: true,
                 msg: "successfuly stored form1 data "
             });
+
         }
     })
 
@@ -105,18 +106,18 @@ router.get('/getSpecificUser/:id', (req, res) => {
 })
 
 router.put('/updateUserDetails', (req, res) => {
-    Applicant.findByIdAndUpdate(req.body._id,
-        {
-            interviewerComments: req.body.interviewerComments,
-            interviewPoints: req.body.interviewPoints,
-            writtenResults: req.body.writtenResults,
-            currentSalary: req.body.currentSalary,
-            offeredSalary: req.body.offeredSalary,
-            shortlisted: req.body.shortlisted
-        },
+    Applicant.findByIdAndUpdate(req.body._id, {
+        interviewerComments: req.body.interviewerComments,
+        interviewPoints: req.body.interviewPoints,
+        writtenResults: req.body.writtenResults,
+        currentSalary: req.body.currentSalary,
+        offeredSalary: req.body.offeredSalary,
+        shortlisted: req.body.shortlisted,
+        selected: req.body.selected
+    },
         (err, applicant) => {
             if (err) {
-                console.log("eroor in updating user")
+                console.log("error in updating user")
             } else {
                 res.json(applicant)
             }
@@ -126,8 +127,7 @@ router.put('/updateUserDetails', (req, res) => {
 
 router.put('/updateUserNotesDetails', (req, res) => {
     console.log(req.body)
-    Applicant.findByIdAndUpdate(req.body._id,
-        { notes: req.body.notes },
+    Applicant.findByIdAndUpdate(req.body._id, { notes: req.body.notes },
         (err, applicant) => {
             if (err) {
                 console.log("error in updating notes" + err)
@@ -141,29 +141,26 @@ router.put('/updateUserNotesDetails', (req, res) => {
 //insert form 2 data 
 router.put('/update/id/:id', (req, res) => {
 
-    Applicant.findOneAndUpdate({ _id: req.params.id },
-        {
-            $set: {
-                interviewSheduled: req.body.interviewSheduled,
-                shortlisted: req.body.shortlisted,
-                linkedin: req.body.linkedin,
-                expectedSalary: req.body.expectedSalary,
-                availability: req.body.availability,
-                priority: req.body.priority,
-                referral: req.body.referral,
-                evaluated: true,
-                rate: req.body.rate
-            }
-        },
-        {
-            new: true
-        },
+    Applicant.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            interviewSheduled: req.body.interviewSheduled,
+            shortlisted: req.body.shortlisted,
+            linkedin: req.body.linkedin,
+            expectedSalary: req.body.expectedSalary,
+            availability: req.body.availability,
+            priority: req.body.priority,
+            referral: req.body.referral,
+            evaluated: true,
+            rate: req.body.rate
+        }
+    }, {
+        new: true
+    },
         function (err, applicant) {
             if (err) {
 
                 res.send('form 2 data storing error');
-            }
-            else {
+            } else {
 
                 sendEmail("quadrantz.dev@gmail.com", applicant.email, "Geveo Australisia Evaluation Process", "Your appliction is successfully evaluated", applicant);
 
@@ -185,19 +182,18 @@ router.put('/update/id/:id', (req, res) => {
 router.put('/form3/:id', (req, res) => {
 
     Applicant
-        .findOneAndUpdate({ _id: req.params.id },
-            {
-                $set: {
+        .findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
 
-                    interviewerComment: req.body.interviewerComment,
-                    interviewScope: req.body.interviewScope,
-                    textResult: req.body.textResult,
-                    salaryDetails: req.body.salaryDetails,
-                    rates: req.body.rates
+                interviewerComment: req.body.interviewerComment,
+                interviewScope: req.body.interviewScope,
+                textResult: req.body.textResult,
+                salaryDetails: req.body.salaryDetails,
+                rates: req.body.rates
 
 
-                }
-            },
+            }
+        },
 
             {
                 new: true
@@ -206,8 +202,7 @@ router.put('/form3/:id', (req, res) => {
                 if (err) {
 
                     res.send('form 3 data storing error');
-                }
-                else {
+                } else {
                     res.status(200).json({
                         applicant: applicant,
                         state: true,
@@ -229,12 +224,37 @@ router.get('/allApplicantDetails', (req, res) => {
         .exec(function (err, applicants) {
             if (err) {
                 console.log("Applicant Detail Retriving error " + err)
-            }
-            else {
+            } else {
                 res.json(applicants)
             }
         })
 })
+
+//count number of applicants
+router.get('/countApplicants', (req, res) => {
+    Applicant.find((err, applicants) => {
+        var count = applicants.length
+        if (!err) { res.json(count); }
+        else { console.log('Error in retrieving count aplicants :' + JSON.stringify(err, undefined, 2)); }
+    });
+});
+
+router.get('/countInterviews', (req, res) => {
+    Applicant.find({ interviewSheduled: true }, (err, applicants) => {
+        var count = applicants.length
+        if (!err) { res.json(count); }
+        else { console.log('Error in retrieving count interviews :' + JSON.stringify(err, undefined, 2)); }
+    });
+});
+
+router.get('/countSelected', (req, res) => {
+    Applicant.find({ selected: true }, (err, applicants) => {
+        var count = applicants.length
+        if (!err) { res.json(count); }
+        else { console.log('Error in retrieving count selected :' + JSON.stringify(err, undefined, 2)); }
+    });
+});
+
 
 // Get Paricular Applicant Details
 router.get('/id/:id', (req, res) => {
@@ -242,8 +262,7 @@ router.get('/id/:id', (req, res) => {
         .exec(function (err, applicant) {
             if (err) {
                 console.log("Applicant detail Retriving error " + err)
-            }
-            else {
+            } else {
                 res.json(applicant)
             }
         })
@@ -258,8 +277,7 @@ router.get('/getAllEvaluatedUsers', (req, res) => {
 
         if (err) {
             console.log("Applicant detail Retriving error " + err)
-        }
-        else {
+        } else {
             res.json(data)
         }
     })
@@ -272,8 +290,7 @@ router.get('/getAllNonEvaluatedUsers', (req, res) => {
 
         if (err) {
             console.log("Applicant detail Retriving error " + err)
-        }
-        else {
+        } else {
             res.json(data)
         }
     })
@@ -285,8 +302,7 @@ router.delete('/deleteAllUsers', (req, res) => {
 
         if (err) {
             console.log("Applicant detail deleting error " + err)
-        }
-        else {
+        } else {
             res.json(ress)
         }
     })

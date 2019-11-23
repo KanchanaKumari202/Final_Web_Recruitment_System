@@ -18,22 +18,18 @@ import { EvaluatedListComponent } from './evaluated-list/evaluated-list.componen
 import { RateCVComponent } from './rate-cv/rate-cv.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-//import { AuthGuard } from './auth/auth.guard';
+// import { AuthGuard } from './auth/auth.guard';
 import { ApplicantApplicationReviewerComponent } from './applicant-application-reviewer/applicant-application-reviewer.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SelectPositionComponent } from './recruitment/select-position/select-position.component';
+import { RecruitComponent } from './recruitment/recruit/recruit.component';
 
 const routes: Routes = [
-  {
-    path: '', component: DashboardComponent,
-    canActivate: [AuthGuard]
-  },
+  { path: '', component: DashboardComponent,canActivate: [AuthGuard]},
   { path: 'Home', component: HomeComponent },
   { path: 'Dashboard', component: DashboardComponent },
   { path: 'userManagement', component: UserManagementComponent },
-  {
-    path: 'userProfile', component: UserProfileComponent,
-    canActivate: [AuthGuard]
-  },
+  { path: 'userProfile', component: UserProfileComponent,canActivate: [AuthGuard] },
   { path: 'NewPosition', component: AddNewPositionComponent },
   { path: 'NewPost', component: NewPostComponent },
   { path: 'JobPosts', component: JobPostsComponent },
@@ -44,18 +40,13 @@ const routes: Routes = [
   { path: 'Login', component: LoginComponent },
   { path: 'EmployeesList', component: EmployeesListComponent },
   { path: 'ApplicantList', component: ApplicantListComponent },
-  {
-    path: 'applicant-evaluator',
-    component: ApplicantApplicationReviewerComponent
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent
-  },
-
+  { path: 'applicant-evaluator', component: ApplicantApplicationReviewerComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'CVDetails', component: CVDetailsComponent },
   { path: 'EvaluatedList', component: EvaluatedListComponent },
   { path: 'RateCV', component: RateCVComponent },
+  { path:'RecruitPositions', component: SelectPositionComponent},
+  { path:'Recruitment/:id', component: RecruitComponent},
   { path: '**', redirectTo: '' }
 
 

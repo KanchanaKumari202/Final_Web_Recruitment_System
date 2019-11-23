@@ -45,6 +45,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { ApplicantApplicationReviewerComponent } from './applicant-application-reviewer/applicant-application-reviewer.component';
 import { CvViewerComponent } from './cv-viewer/cv-viewer.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SelectPositionComponent } from './recruitment/select-position/select-position.component';
+import { RecruitComponent } from './recruitment/recruit/recruit.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import { ProfileComponent } from './profile/profile.component';
     LogoutComponent,
     ApplicantApplicationReviewerComponent,
     CvViewerComponent,
-    ProfileComponent
+    ProfileComponent,
+    SelectPositionComponent,
+    RecruitComponent
   ],
   imports: [
     BrowserModule,

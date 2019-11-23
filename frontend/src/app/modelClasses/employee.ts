@@ -5,6 +5,7 @@ export class Employee {
   email: string;
   status: string;
   rate: string;
+  interviewScheduled:boolean;
 }
 
 

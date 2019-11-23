@@ -84,6 +84,11 @@ export class UserListComponent implements OnInit {
   onEdit(row) {
     delete row.__v;
     delete row.accessLevel;
+    delete row.address;
+    delete row.city;
+    delete row.country;
+    delete row.postalCode;
+    delete row.about;
     console.log(row);
 
     this.service.populateForm(row);
@@ -96,13 +101,13 @@ export class UserListComponent implements OnInit {
   }
 
   onDelete(id) {
-    if (confirm("Are you sure to delete this record ?")) {
-      this.service.deleteUser(id).subscribe(res => {
-        this.notificationService.warn("! Deleted successfully");
-      });
-    }
+    // if (confirm("Are you sure to delete this record ?")) {
+    //   this.service.deleteUser(id).subscribe(res => {
+    //     this.notificationService.warn("! Deleted successfully");
+    //   });
+    // }
 
-    /* this.dialogService
+     this.dialogService
       .openConfirmDialog("Are you sure to delete this record ?")
       .afterClosed()
       .subscribe(res => {
@@ -112,6 +117,6 @@ export class UserListComponent implements OnInit {
             this.notificationService.warn("! Deleted successfully");
           });
         }
-      }); */
+      }); 
   }
 }

@@ -4,7 +4,7 @@ const postSchema = mongoose.Schema({
     position: { type: String, required: true },
     jobSummery: { type: String, required: true },
     jobDescription: { type: String, required: true },
-    openings:{type:String}
+    openings:{type:Number}
 
 
 });

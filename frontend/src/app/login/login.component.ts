@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { first } from "rxjs/operators";
 import { AuthenticationService } from "../services/authentication.service";
 import { AlertService } from "../services/alert.service";
+// import { ToastrService } from 'ngx-toastr';
+ 
 
 @Component({
   selector: "app-login",
@@ -48,9 +50,9 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    // this.authenticationService.test().subscribe(val => {
-    //     console.log(val);
-    // })
+    this.authenticationService.test().subscribe(val => {
+        console.log(val);
+    })
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
@@ -65,8 +67,13 @@ export class LoginComponent implements OnInit {
         data => {
           this.router.navigate([this.returnUrl]);
         },
-        error => {
-          this.alertService.error(error);
+        err => {
+          // this.toastr.error(err.error.message, 'Error',{
+          //   timeOut:3000,
+          //   closeButton:true
+          // });
+ window.alert("Please check your username or password!");
+         // this.alertService.error(err.error.message);
           this.loading = false;
         }
       );

@@ -71,6 +71,7 @@ const applicantSchema = mongoose.Schema({
     shortlisted: Boolean,
     interviewSheduled: Boolean,
     positionId: { type: String },
+    selected: { type: Boolean }
 
 
 
@@ -86,4 +87,3 @@ const applicantSchema = mongoose.Schema({
 });
 
 const User = module.exports = mongoose.model('applicant', applicantSchema);
-

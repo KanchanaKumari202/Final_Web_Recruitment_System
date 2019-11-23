@@ -71,13 +71,13 @@ export class EmployeesListComponent implements OnInit {
   updateUserStatus(employee){
 
    
-    alert(JSON.stringify(employee))
+    // alert(JSON.stringify(employee))
     return new Promise((resolve,reject)=>{
       if (window.confirm('Do you want to send email')) {
         employee.interviewSheduled = true;
       this.restApi.updateUserDetails(employee).subscribe(
         res=>{
-          alert("response employee"+JSON.stringify(res.body))
+          // alert("response employee"+JSON.stringify(res.body))
           this.updatedUser = res.body;
           resolve(res.body)
         },err=>{
@@ -119,7 +119,7 @@ export class EmployeesListComponent implements OnInit {
       date:moment(date.valueAsDate).format('MM-DD-YYYY')
     }
     employeeObject = _.merge(employee,dateObject)
-    alert("employee obkect here"+JSON.stringify(employeeObject))
+    // alert("employee obkect here"+JSON.stringify(employeeObject))
    this.updateUserStatus(employeeObject).then(
      res=>{
         if(employeeObject.rate > "3"){

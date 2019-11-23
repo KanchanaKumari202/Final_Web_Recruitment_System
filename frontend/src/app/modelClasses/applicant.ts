@@ -18,7 +18,9 @@ export interface IApplicant {
     currentSalary?: string,
     offeredSalary?: string,
     shortlisted?: boolean,
-    interviewSheduled?: boolean
+    interviewSheduled?: boolean,
+    positionId?:string,
+    selected?:boolean
 }
 
 
@@ -43,7 +45,10 @@ export class Applicant implements IApplicant {
         public currentSalary?: string,
         public offeredSalary?: string,
         public shortlisted?: boolean,
-        public interviewSheduled?: boolean
+        public interviewSheduled?: boolean,
+        public positionId?: string,
+        public selected?:boolean
+
     ) {
 
     }
