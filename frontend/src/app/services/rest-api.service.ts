@@ -11,8 +11,8 @@ import { Employee } from '../modelClasses/employee';
 export class RestApiService {
 
   // Define API
-  apiURL = 'http://localhost:3001';
-  public updateUserDetailsUrl= "http://localhost:3001/employeev2/updateUserDetail";
+  apiURL = '';
+  public updateUserDetailsUrl= "employeev2/updateUserDetail";
   constructor(private http: HttpClient) {
   }
 

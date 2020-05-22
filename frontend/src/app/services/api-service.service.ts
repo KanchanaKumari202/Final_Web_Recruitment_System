@@ -9,14 +9,14 @@ export class ApiServiceService {
   constructor(private http:HttpClient) { }
 
   registerUser(user){
-  this.http.post('http://localhost:3000/register',user).subscribe(res =>{
+  this.http.post('register',user).subscribe(res =>{
     console.log(res);
 
   })
 }
 
   public uploadAttachment(fd): Observable<any> {
-    return this.http.post(`http://localhost:3000/attachment`, fd)
+    return this.http.post(`attachment`, fd)
   }
 
 

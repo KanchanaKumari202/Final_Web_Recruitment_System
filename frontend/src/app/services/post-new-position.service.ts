@@ -7,7 +7,7 @@ import { NewPosition } from '../modelClasses/new-position';
 })
 export class PostNewPositionService {
 
-url='http://localhost:3000/addPosition';
+url='addPosition';
 
   constructor(private http:HttpClient) { }
 

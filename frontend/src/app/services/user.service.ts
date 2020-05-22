@@ -30,7 +30,7 @@ export class UserService {
 
   selectedUser: User;
   users: User[];
-  readonly baseURL = "http://localhost:3000/api/userModel";
+  readonly baseURL = "api/userModel";
 
   constructor(private http: HttpClient) {}
 

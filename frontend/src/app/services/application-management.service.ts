@@ -7,16 +7,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApplicantManagementService {
-  public getAllApplicantsUrl='http://localhost:3000/applicant/getAllNonEvaluatedUsers';
-  public getAllEvaluatedUrl = 'http://localhost:3000/applicant/getAllEvaluatedUsers';
-  public setEvaluatedUrl = 'http://localhost:3000/applicant/update/id';
-  public getSingleUserUrl = 'http://localhost:3000/applicant/getSpecificUser';
-  public setNotesUrl = 'http://localhost:3000/applicant/updateUserNotesDetails';
-  public updateUserUrl = 'http://localhost:3000/applicant/updateUserDetails';
-  public getCountOfApplicantsUrl = 'http://localhost:3000/applicant/countApplicants';
-  public getCountOfInterviewsUrl = 'http://localhost:3000/applicant/countInterviews';
-  public getCountOfSelectedUrl = 'http://localhost:3000/applicant/countSelected';
-  public getpositionCountUrl = 'http://localhost:3000/api/position/countPositions';
+  public getAllApplicantsUrl='applicant/getAllNonEvaluatedUsers';
+  public getAllEvaluatedUrl = 'applicant/getAllEvaluatedUsers';
+  public setEvaluatedUrl = 'applicant/update/id';
+  public getSingleUserUrl = 'applicant/getSpecificUser';
+  public setNotesUrl = 'applicant/updateUserNotesDetails';
+  public updateUserUrl = 'applicant/updateUserDetails';
+  public getCountOfApplicantsUrl = 'applicant/countApplicants';
+  public getCountOfInterviewsUrl = 'applicant/countInterviews';
+  public getCountOfSelectedUrl = 'applicant/countSelected';
+  public getpositionCountUrl = 'api/position/countPositions';
   
   constructor(
    public  http: HttpClient
